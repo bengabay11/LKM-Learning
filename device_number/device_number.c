@@ -31,9 +31,9 @@ struct file_operations fops =
 	.release = driver_release
 };
 
-int __init module_start(void)
+int __init start_module(void)
 {
-	printk("Registering device...\n", DEVICE_MAJOR);
+	printk("Registering device...\n");
 	DEVICE_MAJOR = register_chrdev(0, DEVICE_NAME, &fops);
 	if (DEVICE_MAJOR >= 0)
 	{
@@ -49,6 +49,7 @@ void __exit exit_module(void)
 {
 	printk("Unregistering Device with major %d...\n", DEVICE_MAJOR);
 	unregister_chrdev(DEVICE_MAJOR, DEVICE_NAME);
+
 	// if (ret == 0)
     //{   
       //  printk("Device number unregistered\n");
@@ -59,5 +60,5 @@ void __exit exit_module(void)
 
 }
 
-module_init(module_start);
+module_init(start_module);
 module_exit(exit_module);
