@@ -7,13 +7,13 @@ MODULE_LICENSE("MIT");
 MODULE_AUTHOR("Ben Gabay");
 MODULE_DESCRIPTION("Hello World LKM");
 
-static int __init HelloStart(void)
+int __init HelloStart(void)
 {
 	printk("Hello Kernel!\n");
 	return 0;
 }
 
-static void __exit HelloEnd(void)
+void __exit HelloEnd(void)
 {
 	printk("Goodbye Kernel!\n");
 }
